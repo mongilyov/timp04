@@ -33,7 +33,7 @@ jobs:
       run: mkdir solver_lib/build
       
     - name: Create Work Dir(SA)
-      run: mkdir solver_app/build
+      run: mkdir solver_application/build
       
     - name: Configure CMake Formatter Lib
       working-directory: formatter_lib/build
