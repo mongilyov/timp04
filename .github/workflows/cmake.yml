@@ -20,18 +20,32 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+    - name: Configure CMake Formatter Lib
+      run: cmake -B ${{github.workspace}}/formatter_lib/build
+      
+    - name: Configure CMake Formatter Extended Lib
+      run: cmake -B ${{github.workspace}}/formatter_ex_lib/build
+      
+    - name: Configure CMake Hello World App
+      run: cmake -B ${{github.workspace}}/hello_world_application/build
+      
+    - name: Configure CMake Solver Lib
+      run: cmake -B ${{github.workspace}}/solver_lib/build
+      
+    - name: Configure CMake Solver App
+      run: cmake -B ${{github.workspace}}/solver_application/build
 
-    - name: Build
-      # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+    - name: Build Formatter Lib
+      run: cmake --build ${{github.workspace}}/formatter_lib/build
+      
+    - name: Build Formatter Extended Lib
+      run: cmake --build ${{github.workspace}}/formatter_ex_lib/build
+      
+    - name: Build Hello World Application
+      run: cmake --build ${{github.workspace}}/hello_world_application/build   
 
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      # Execute tests defined by the CMake configuration.
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest -C ${{env.BUILD_TYPE}}
-
+    - name: Build Solver Lib
+      run: cmake --build ${{github.workspace}}/solver_lib/build
+      
+    - name: Build Solver Application
+      run: cmake --build ${{github.workspace}}/solver_application/build  
