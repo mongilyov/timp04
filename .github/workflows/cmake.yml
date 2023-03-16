@@ -19,33 +19,58 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+  
+    - name: Create Work Dir(FL)
+      run: mkdir formatter_lib/build
 
+    - name: Create Work Dir(FEL)
+      run: mkdir formatter_ex_lib/build
+      
+    - name: Create Work Dir(HW)
+      run: mkdir hello_world_application/build
+      
+    - name: Create Work Dir(SL)
+      run: mkdir solver_lib/build
+      
+    - name: Create Work Dir(SA)
+      run: mkdir solver_app/build
+      
     - name: Configure CMake Formatter Lib
-      run: cmake -B ${{github.workspace}}/formatter_lib/build
+      working-directory: formatter_lib/build
+      run: cmake ..
       
     - name: Configure CMake Formatter Extended Lib
-      run: cmake -B ${{github.workspace}}/formatter_ex_lib/build
+      working-directory: formatter_ex_lib/build
+      run: cmake ..
       
     - name: Configure CMake Hello World App
-      run: cmake -B ${{github.workspace}}/hello_world_application/build
+      working-directory: hello_world_application/build
+      run: cmake ..
       
     - name: Configure CMake Solver Lib
-      run: cmake -B ${{github.workspace}}/solver_lib/build
+      working-directory: solver_lib/build
+      run: cmake ..
       
     - name: Configure CMake Solver App
-      run: cmake -B ${{github.workspace}}/solver_application/build
+      working-directory: solver_application/build
+      run: cmake ..
 
     - name: Build Formatter Lib
-      run: cmake --build ${{github.workspace}}/formatter_lib/build
+      working-directory: formatter_lib/build
+      run: make
       
     - name: Build Formatter Extended Lib
-      run: cmake --build ${{github.workspace}}/formatter_ex_lib/build
+      working-directory: formatter_ex_lib/build
+      run: make
       
     - name: Build Hello World Application
-      run: cmake --build ${{github.workspace}}/hello_world_application/build   
+      working-directory: hello_world_application/build
+      run: make
 
     - name: Build Solver Lib
-      run: cmake --build ${{github.workspace}}/solver_lib/build
+      working-directory: solver_lib/build
+      run: make
       
     - name: Build Solver Application
-      run: cmake --build ${{github.workspace}}/solver_application/build  
+      working-directory: solver_application/build
+      run: make
